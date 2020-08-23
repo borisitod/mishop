@@ -1,4 +1,4 @@
-# mi-mall
+# mishop
 
 ## Project setup
 ```
