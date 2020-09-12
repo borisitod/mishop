@@ -3,12 +3,17 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App.vue'
-import env from './env'
+// import env from './env'
+
+const mock = true;
+if (mock) {
+  require('./mock/api')
+}
 
 axios.defaults.baseURL = '/api'
 axios.defaults.timeout = 8000
 
-axios.defaults.baseURL = env.baseURL
+//axios.defaults.baseURL = env.baseURL
 
 //Interface error interception
 axios.interceptors.response.use((response) => {
