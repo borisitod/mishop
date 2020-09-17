@@ -5,10 +5,10 @@ import VueAxios from 'vue-axios'
 import App from './App.vue'
 // import env from './env'
 
-const mock = true;
-if (mock) {
-  require('./mock/api')
-}
+// const mock = true;
+// if (mock) {
+//   require('./mock/api')
+// }
 
 axios.defaults.baseURL = '/api'
 axios.defaults.timeout = 8000
