@@ -60,15 +60,41 @@
       </div>
       <div class="ads-box">
         <a :href="'/#/product/' + item.id" v-for="(item, index) in adsList" :key="index">
-          <img :src="item.img" alt="">
+          <img :src="item.img" alt />
         </a>
       </div>
       <div class="banner">
         <a href="/#/product/30">
-          <img src="/imgs/banner-1.png" alt="">
+          <img src="/imgs/banner-1.png" alt />
         </a>
       </div>
-      <div class="product-box"></div>
+    </div>
+    <div class="product-box">
+      <div class="container">
+        <h2>手机</h2>
+        <div class="wrapper">
+          <div class="banner-left">
+            <a href="/#/product/35">
+              <img src="/imgs/mix-alpha.jpg" alt />
+            </a>
+          </div>
+          <div class="list-box">
+            <div class="list" v-for="(arr, i) in phoneList" :key="i">
+              <div class="item" v-for="(item, j) in arr" :key="j">
+                <span v-bind:class="{'new-pro':j%2==0}">新品</span>
+                <div class="item-img">
+                  <img :src="item.mainImage">
+                </div>
+                <div class="item-info">
+                  <h3>{{ item.name}}</h3>
+                  <p>{{ item.subtitle}}</p>
+                  <p class="price">{{ item.price}}元</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <service-bar></service-bar>
   </div>
@@ -156,21 +182,25 @@ export default {
       adsList: [
         {
           id: 33,
-          img:'/imgs/ads/ads-1.png'
+          img: "/imgs/ads/ads-1.png",
         },
         {
           id: 48,
-          img:'/imgs/ads/ads-2.jpg'
+          img: "/imgs/ads/ads-2.jpg",
         },
         {
           id: 45,
-          img:'/imgs/ads/ads-3.png'
+          img: "/imgs/ads/ads-3.png",
         },
         {
           id: 47,
-          img:'/imgs/ads/ads-4.jpg'
-        }
-      ]
+          img: "/imgs/ads/ads-4.jpg",
+        },
+      ],
+      phoneList: [
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
+      ],
     };
   },
   components: {
@@ -178,6 +208,21 @@ export default {
     SwiperSlide,
     ServiceBar,
   },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      this.axios.get('/products', {
+        params: {
+          categoryId: 100012,
+          pageSize: 8
+        }
+      }).then((res) => {
+        this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
+      })
+    }
+  }
 };
 </script>
 <style lang="scss">
