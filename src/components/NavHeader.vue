@@ -180,6 +180,7 @@ export default {
         background-color: $colorA;
         text-align: center;
         color: $colorG;
+        margin-right: 0;
 
         .icon-cart {
           display: inline-block;
